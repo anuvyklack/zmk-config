@@ -215,7 +215,7 @@ ZMK_LAYER(qwerty,
     &kp LSHFT   &kp Z        &kp X        &kp C         &kp V           &kp B             &kp C_PLAY_PAUSE     &kp C_MUTE     &kp N            &kp M          &kp COMMA     &kp DOT   &kp FSLH   &kp RCTRL
 //╰───────────┴────────────┴────────────┴─────────────┴───────────────┴─────────────────╯                                   ╰────────────────┴──────────────┴─────────────┴─────────┴──────────┴───────────╯
 //                         ╭────────────┬─────────────┬───────────────┬─────────────────┬─────────────────╮ ╭───────────────┬────────────────┬──────────────┬─────────────┬─────────╮
-                             XXX          &kp LGUI      &lt NAV2 ESC    &mt LCTRL SPACE   &mt LALT ENTER     &mt LSHFT BSPC   &mylt SYM BSPC   &mt LALT DEL   &mo FUNC      XXX
+                             XXX          &kp LGUI      &lt NAV2 ESC    &mt LCTRL SPACE   &mt LALT ENTER     &mt LSHFT DEL    &mylt SYM BSPC   &mo FUNC       XXX           XXX
 //                           XXX          &kp LALT      &lt NAV2 ESC    &mt_spc LCTRL 0   &kp LGUI           &mt LSHFT ENTER  &mylt SYM BSPC   &mt LALT DEL   &mo FUNC      XXX
 //                         ╰────────────┴─────────────┴───────────────┴─────────────────┴─────────────────╯ ╰───────────────┴────────────────┴──────────────┴─────────────┴─────────╯
     , /* sensor */ &inc_dec_kp LEFT RIGHT &inc_dec_kp C_VOL_DN C_VOL_UP
@@ -342,71 +342,28 @@ ZMK_LAYER(nav_num,
 // ╰───────╮ LH4 LH3 LH2 LH1 LH0 │  │ RH0 RH1 RH2 RH3 RH4 ╭───────╯
 //         ╰─────────────────────╯  ╰─────────────────────╯
 
-// #define FN_COMBO(name, combo_bindings, keypos) \
-//     / { \
-//         combos { \
-//             compatible = "zmk,combos"; \
-//             name ## _combo { \
-//                 timeout-ms = <500>; \
-//                 bindings = <combo_bindings>; \
-//                 key-positions = <keypos>; \
-//                 layers = <FUNC>; \
-//                 slow-release; \
-//             }; \
-//         }; \
-//     }
+#define FN_COMBO(name, combo_bindings, keypos) \
+    / { \
+        combos { \
+            compatible = "zmk,combos"; \
+            name ## _combo { \
+                timeout-ms = <500>; \
+                bindings = <combo_bindings>; \
+                key-positions = <keypos>; \
+                layers = <FUNC>; \
+                slow-release; \
+            }; \
+        }; \
+    };
 
-// FN_COMBO(f7,  &kp F7,  LM3 LM2 LM1)
-// FN_COMBO(f11, &kp F11, LM4 LM2 LM1)
-
-// / {
-//     combos {
-//         compatible = "zmk,combos";
-//         f5_combo {
-//             timeout-ms = <500>;
-//             bindings = <&kp F6>;
-//             key-positions = <LM3 LM1>;
-//             layers = <FUNC>;
-//             slow-release;
-//         }
-//     };
-// };
-
-// / {
-//     combos {
-//         compatible = "zmk,combos";
-//         f5_combo {
-//             timeout-ms = <500>;
-//             bindings = <&kp F6>;
-//             key-positions = <LM3 LM1>;
-//             layers = <FUNC>;
-//             slow-release;
-//         };
-//         f6_combo {
-//             timeout-ms = <500>;
-//             bindings = <&kp F6>;
-//             key-positions = <LM3 LM2>;
-//             layers = <FUNC>;
-//             slow-release;
-//         };
-//         f7_combo {
-//             timeout-ms = <500>;
-//             bindings = <&kp F7>;
-//             key-positions = <LM3 LM2 LM1>;
-//             layers = <FUNC>;
-//             slow-release;
-//         };
-//     };
-// };
-
-// ZMK_COMBO(f7,  &kp F7,   LM3 LM2 LM1,  FUNC, 500, 0, slow-release;)
-// ZMK_COMBO(f11, &kp F11,  LM4 LM2 LM1,  FUNC, 500, 0, slow-release;)
-// ZMK_COMBO(f3,  &kp F3,   LM2 LM1,      FUNC, 500, 0, slow-release;)
-// ZMK_COMBO(f5,  &kp F5,   LM3 LM1,      FUNC, 500, 0, slow-release;)
-// ZMK_COMBO(f6,  &kp F6,   LM3 LM2,      FUNC, 500, 0, slow-release;)
-// ZMK_COMBO(f9,  &kp F9,   LM4 LM1,      FUNC, 500, 0, slow-release;)
-// ZMK_COMBO(f10, &kp F10,  LM4 LM2,      FUNC, 500, 0, slow-release;)
-// ZMK_COMBO(f12, &kp F12,  LM4 LM3,      FUNC, 500, 0, slow-release;)
+FN_COMBO(f7,  &kp F7,   LM3 LM2 LM1)
+FN_COMBO(f11, &kp F11,  LM4 LM2 LM1)
+FN_COMBO(f3,  &kp F3,   LM2 LM1)
+FN_COMBO(f5,  &kp F5,   LM3 LM1)
+FN_COMBO(f6,  &kp F6,   LM3 LM2)
+FN_COMBO(f9,  &kp F9,   LM4 LM1)
+FN_COMBO(f10, &kp F10,  LM4 LM2)
+FN_COMBO(f12, &kp F12,  LM4 LM3)
 
 ZMK_LAYER(func,
 //╭─────┬─────┬─────┬─────┬─────┬─────╮                  ╭─────┬──────┬─────┬─────┬─────┬──────╮
