@@ -55,7 +55,6 @@ ZMK_COMBO(lang_combo, &lang, LH1 RH1, ALL)
 ZMK_COMBO(capsword_combo, &caps_word, LH0 RH0, ALL)
 
 // ZMK_COMBO(ctrl_shift_v_combo, &kp LC(LS(V)), LB1 LB2 LH1, QWERTY, 150)
-
 // ZMK_COMBO(ctrl_shift_t_combo, &kp LC(LS(T)), LH1 LH0 LT0, QWERTY, 400)
 
 ZMK_COMBO(ctrl_shift_tab_combo, &kp LC(LS(TAB)), LM3 LM2, QWERTY, 40)
