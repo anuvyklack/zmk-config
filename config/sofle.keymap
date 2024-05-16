@@ -65,6 +65,9 @@ ZMK_COMBO(parens_combo,   &parens_pair,   LM2 LM1, SYM)
 ZMK_COMBO(braces_combo,   &braces_pair,   LB2 LB1, SYM)
 ZMK_COMBO(brackets_combo, &brackets_pair, LT2 LT1, SYM)
 
+// Simultaneously press Ctrl + Shift
+ZMK_COMBO(ctrl_shift_combo, &sk LS(LCTRL), LM2 LM1, NAV)
+
 //------------------------------------------------------------------------------
 ZMK_MACRO(lang, bindings = <&macro_press &kp LGUI>,
                            <&macro_tap &kp SPACE>,
