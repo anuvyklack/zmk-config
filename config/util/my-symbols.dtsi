@@ -50,8 +50,8 @@
         LINUX_UNICODE_SINGLE(laquo,      N0, N0, A,  B)  // «
         LINUX_UNICODE_SINGLE(raquo,      N0, N0, B,  B)  // »
 
-        LINUX_UNICODE_SINGLE(en_dash,    N2, N0, N1, N3) // –
-        LINUX_UNICODE_SINGLE(em_dash,    N2, N0, N1, N4) // —
+        // LINUX_UNICODE_SINGLE(en_dash,    N2, N0, N1, N3) // –
+        // LINUX_UNICODE_SINGLE(em_dash,    N2, N0, N1, N4) // —
         LINUX_UNICODE_SINGLE(h_bar,      N2, N0, N1, N5) // ―
 
         LINUX_UNICODE_SINGLE(bullet,     N2, N0, N2, N2) // •

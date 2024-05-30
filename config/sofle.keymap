@@ -26,7 +26,7 @@
 #define FUNC 4
 
 // #include "./util/symbols.dtsi"
-#include "./util/my-symbols.dtsi"
+// #include "./util/my-symbols.dtsi"
 
 //-- Global settings -----------------------------------------------------------
 
@@ -66,13 +66,18 @@ ZMK_COMBO(ctrl_shift_combo, &sk LS(LCTRL), LM2 LM1, NAV)
 
 // Lock navigation layer by simultaneous press of left thumb NAV key and main
 // right thumb key.
-ZMK_COMBO(tog_navigation_layer_combo, &tog NAV, LH2 RH1, QWERTY)
+ZMK_COMBO(lock_navigation_layer_combo, &tog NAV, LH2 RH1, QWERTY)
 
 ZMK_MACRO(ctrl_shift_macro,
           bindings = <&macro_press &kp LCTRL &kp LSHFT>,
                      <&macro_pause_for_release>,
                      <&macro_release &kp LCTRL &kp LSHFT>;)
 ZMK_COMBO(cltr_shift_combo, &ctrl_shift_macro, LH1 LH0, ALL)
+
+//------------------------------------------------------------------------------
+// Symbols
+ZMK_MACRO(em_dash, bindings = <&macro_tap &kp RALT &kp MINUS &kp MINUS &kp MINUS>;)
+ZMK_MACRO(nbsp, bindings = <&macro_tap &kp RALT &kp SPACE &kp SPACE>;)
 
 //------------------------------------------------------------------------------
 ZMK_MACRO(lang, bindings = <&macro_press &kp LGUI>,
@@ -300,7 +305,7 @@ ZMK_LAYER(num,
 //├──────────┼──────────┼──────────┼───────────┼───────────────┼───────────┤                 ├───────────┼────────┼────────┼────────┼────────┼─────┤
     &tog NUM   &sk LGUI   &sk LALT   &sk LSHFT   &sk LCTRL       XXX                           &kp PLUS    &kp N4   &kp N5   &kp N6   XXX      XXX
 //├──────────┼──────────┼──────────┼───────────┼───────────────┼───────────┤                 ├───────────┼────────┼────────┼────────┼────────┼─────┤
-    XXX        XXX        XXX        XXX         XXX             XXX         ___       ___     &kp MINUS   &kp N1   &kp N2   &kp N3   &slash   XXX
+    XXX        XXX        XXX        XXX         XXX             XXX         ___       ___     &kp MINUS   &kp N1   &kp N2   &kp N3   XXX      XXX
 //╰──────────┴──────────┴──────────┴───────────┴───────────────┴───────────╯                 ╰───────────┴────────┴────────┴────────┴────────┴─────╯
 //                      ╭──────────┬───────────┬───────────────┬───────────┬─────╮  ╭────────┬───────────┬────────┬────────┬────────╮
                           ___        ___         &to QWERTY      ___         ___      &kp N0   ___         ___      ___      ___
