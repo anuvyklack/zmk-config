@@ -63,6 +63,7 @@ ZMK_COMBO(brackets_combo, &brackets_pair, LB2 LB1, SYM)
 
 // Simultaneously press Ctrl + Shift
 ZMK_COMBO(ctrl_shift_combo, &sk LS(LCTRL), LM2 LM1, NAV)
+ZMK_COMBO(alt_ctrl_combo,   &sk LC(LALT),  LM3 LM1, NAV)
 
 // Lock navigation layer by simultaneous press of left thumb NAV key and main
 // right thumb key.
@@ -169,19 +170,19 @@ ZMK_HOLD_TAP(motog,
     bindings = <&mo>, <&tog>;
 )
 
+// &caps_word on tap, &kp on fold
+ZMK_HOLD_TAP(mo_lang,
+    flavor = "balanced";
+    tapping-term-ms = <170>;
+    bindings = <&mo>, <&lang>;
+)
+
 // sticky modifier: sticky key on press, normal key on hold
 ZMK_HOLD_TAP(sticky_key_press_kp_hold,
     flavor = "hold-preferred";
     tapping-term-ms = <170>;
     hold-while-undecided-linger;
     bindings = <&kp>, <&sk>;
-)
-
-// &caps_word on tap, &kp on fold
-ZMK_HOLD_TAP(mo_lang,
-    flavor = "balanced";
-    tapping-term-ms = <170>;
-    bindings = <&mo>, <&lang>;
 )
 
 #define SK(key) &sticky_key_press_kp_hold key key
@@ -251,8 +252,8 @@ ZMK_LAYER(symbols,
     ___      &kp BSLH   &kp PIPE    &kp LBKT     &kp RBKT      &kp AMPS            ___                  ___     &kp QMARK   &kp EQUAL   &kp LT        &kp GT       &em_dash    XXX
 //╰────────┴──────────┴───────────┴────────────┴─────────────┴─────────────────╯                              ╰───────────┴───────────┴─────────────┴────────────┴───────────┴───────────╯
 //                    ╭───────────┬────────────┬─────────────┬─────────────────┬──────────────────╮  ╭────────┬───────────┬───────────┬─────────────┬────────────╮
-//                      &kp MINUS   ___          &kp RALT      &mt LCTRL UNDER   &nbsp_mod LALT 0       ___     ___         ___         ___           ___
-                        &kp MINUS   ___          &kp RALT     &nbsp_mod LCTRL 0  &mt LALT UNDER         ___     ___         ___         ___           ___
+                        &kp MINUS   ___          &kp RALT      &mt LCTRL UNDER   &nbsp_mod LALT 0       ___     ___         ___         ___           ___
+//                      &kp MINUS   ___          &kp RALT     &nbsp_mod LCTRL 0  &mt LALT UNDER         ___     ___         ___         ___           ___
 //                    ╰───────────┴────────────┴─────────────┴─────────────────┴──────────────────╯  ╰────────┴───────────┴───────────┴─────────────┴────────────╯
 )
 
