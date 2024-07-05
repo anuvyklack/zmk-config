@@ -92,7 +92,7 @@ ZMK_MACRO(brackets_pair, bindings = <&kp LBKT &kp RBKT &kp LEFT>;)
 ZMK_MACRO(angular_pair,  bindings = <&kp LT &kp GT &kp LEFT>;)
 
 // ←/→ workspace
-ZMK_MACRO(wsp_left, bindings = <&kp LG(LA(LEFT))>;)
+ZMK_MACRO(wsp_left,  bindings = <&kp LG(LA(LEFT))>;)
 ZMK_MACRO(wsp_right, bindings = <&kp LG(LA(RIGHT))>;)
 
 // ←/→ tab
@@ -129,25 +129,59 @@ ZMK_MOD_MORPH(spc_morph,
               mods = <(MOD_LSFT|MOD_RSFT)>;
               bindings = <&kp SPACE>, <&dot_space>;)
 
-// Left homerow modifiers
+// left-hand homerow modifiers
 ZMK_HOLD_TAP(hml,
-    flavor = "tap-unless-interrupted";
+    flavor = "balanced";
     // Produces tap if held longer than tapping-term-ms
     tapping-term-ms = <280>;
-    quick-tap-ms = <QUICK_TAP_MS>; // A quick tap+hold holds tap key pressed.
+    // A quick tap+hold holds tap key pressed.
+    quick-tap-ms = <QUICK_TAP_MS>;
     // Consider activating hold behavior only if key was pressed in more
     // than this amound of time after previous.
     require-prior-idle-ms = <150>;
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_R THUMBS>;
+    // Delay positional check until key-release
+    hold-trigger-on-release;
 )
+
+// right-hand homerow modifiers
+ZMK_HOLD_TAP(hmr,
+    flavor = "balanced";
+    // Produces tap if held longer than tapping-term-ms
+    tapping-term-ms = <280>;
+    // A quick tap+hold holds tap key pressed.
+    quick-tap-ms = <QUICK_TAP_MS>;
+    // Consider activating hold behavior only if key was pressed in more
+    // than this amound of time after previous.
+    require-prior-idle-ms = <150>;
+    bindings = <&kp>, <&kp>;
+    hold-trigger-key-positions = <KEYS_L THUMBS>;
+    // Delay positional check until key-release
+    hold-trigger-on-release;
+)
+
+// // Left homerow modifiers
+// ZMK_HOLD_TAP(hml,
+//     flavor = "tap-unless-interrupted";
+//     // Produces tap if held longer than tapping-term-ms
+//     tapping-term-ms = <280>;
+//     // A quick tap+hold holds tap key pressed.
+//     quick-tap-ms = <QUICK_TAP_MS>;
+//     // Consider activating hold behavior only if key was pressed in more
+//     // than this amound of time after previous.
+//     require-prior-idle-ms = <150>;
+//     bindings = <&kp>, <&kp>;
+//     hold-trigger-key-positions = <KEYS_R THUMBS>;
+// )
 
 // Left homerow modifiers for navigation layer
 ZMK_HOLD_TAP(lnav,
     flavor = "balanced";
     // Produces tap if held longer than tapping-term-ms
     tapping-term-ms = <280>;
-    quick-tap-ms = <QUICK_TAP_MS>; // A quick tap+hold holds tap key pressed.
+    // A quick tap+hold holds tap key pressed.
+    quick-tap-ms = <QUICK_TAP_MS>;
     // Consider activating hold behavior only if key was pressed in more
     // than this amound of time after previous.
     require-prior-idle-ms = <150>;
@@ -161,6 +195,14 @@ ZMK_HOLD_TAP(mylt,
     tapping-term-ms = <170>;
     quick-tap-ms = <175>;
     bindings = <&mo>, <&kp>;
+)
+
+// hold: layer / tap: sticky-key
+ZMK_HOLD_TAP(mosk,
+    flavor = "hold-preferred";
+    tapping-term-ms = <170>;
+    quick-tap-ms = <175>;
+    bindings = <&mo>, <&sk>;
 )
 
 // layer-toggle / layer-hold
@@ -200,39 +242,38 @@ ZMK_HOLD_TAP(nbsp_mod,
 ZMK_LAYER(qwerty,
 //  t: tap, h: hold
 // ╭─────────┬─────────┬─────────┬─────────┬─────────┬──────────╮                        ╭─────────┬─────────┬─────────┬─────────┬─────────┬──────────╮
-// │    =    │    1    │    2    │    3    │    4    │    5     │                        │    6    │    7    │   8     │    9    │    0    │    -     │
+// │    =    │    1    │    2    │    3    │    4    │    5     │                        │    6    │    7    │    8    │    9    │    0    │    -     │
 // ├─────────┼─────────┼─────────┼─────────┼─────────┼──────────┤                        ├─────────┼─────────┼─────────┼─────────┼─────────┼──────────┤
-// │   TAB   │    Q    │    W    │    E    │    R    │    T     │                        │    Y    │    U    │   I     │    O    │    P    │   ` ~    │
+// │   TAB   │    Q    │    W    │    E    │    R    │    T     │                        │    Y    │    U    │    I    │    O    │    P    │   ` ~    │
 // ├─────────┼─────────┼─────────┼─────────┼─────────┼──────────┤                        ├─────────┼─────────┼─────────┼─────────┼─────────┼──────────┤
-// │  LANG   │    A    │    S    │    D    │    F    │    G     │                        │    H    │    J    │   K     │    L    │   ; :   │   ' "    │
+// │  LANG   │ Win  A  │ Alt  S  │ Shift D │ Ctrl  F │    G     │                        │    H    │ Ctrl  J │ Shift K │ Alt  L  │ Win  ;: │   ' "    │
 // ├─────────┼─────────┼─────────┼─────────┼─────────┼──────────┤                        ├─────────┼─────────┼─────────┼─────────┼─────────┼──────────┤
 // │ ( Shift │    Z    │    X    │    C    │    V    │    B     │   >││           mute   │    N    │    M    │  , <    │  . >    │   / ?   │  ) Ctrl  │
 // ╰─────────┴─────────┴─────────┴─────────┴─────────┴──────────╯                        ╰─────────┴─────────┴─────────┴─────────┴─────────┴──────────╯
-//                   ╭─────────┬─────────┬─────────┬──────────┬──────────╮  ╭──────────┬─────────┬─────────┬─────────┬─────────╮
-//                   │    -    │   Win   │ t: Esc  │ t: Space │ t: Enter │  │ t: Enter │ t: Bscp │   Alt   │   Del   │         │
-//                   │         │         │ h: NAV  │ h: Ctrl  │ h: NUM   │  │ h: Shift │ h: SYM  │         │         │         │
-//                   ╰─────────┴─────────┴─────────┴──────────┴──────────╯  ╰──────────┴─────────┴─────────┴─────────┴─────────╯
-//╭─────────────────┬────────┬───────────┬──────────┬───────────────┬─────────────────╮                                   ╭────────────────┬──────────┬───────────┬─────────┬──────────┬────────────────╮
-    &kp EQUAL         &kp N1   &kp N2      &kp N3     &kp N4          &kp N5                                                &kp N6           &kp N7     &kp N8      &kp N9    &kp N0     &kp MINUS
-//├─────────────────┼────────┼───────────┼──────────┼───────────────┼─────────────────┤                                   ├────────────────┼──────────┼───────────┼─────────┼──────────┼────────────────┤
-    &kp TAB           &kp Q    &kp W       &kp E      &kp R           &kp T                                                 &kp Y            &kp U      &kp I       &kp O     &kp P      &kp GRAVE
-//├─────────────────┼────────┼───────────┼──────────┼───────────────┼─────────────────┤                                   ├────────────────┼──────────┼───────────┼─────────┼──────────┼────────────────┤
-    &mo_lang FUNC 0   &kp A    &kp S       &kp D      &lnav NAV F     &kp G                                                 &kp H            &kp J      &kp K       &kp L     &kp SEMI   &kp SQT
-//├─────────────────┼────────┼───────────┼──────────┼───────────────┼─────────────────┤                                   ├────────────────┼──────────┼───────────┼─────────┼──────────┼────────────────┤
-    &mt LSHIFT LPAR   &kp Z    &kp X       &kp C      &kp V           &kp B             &kp C_PLAY_PAUSE     &kp C_MUTE     &kp N            &kp M      &kp COMMA   &kp DOT   &kp FSLH   &mt LCTRL RPAR
-//╰─────────────────┴────────┴───────────┴──────────┴───────────────┴─────────────────╯                                   ╰────────────────┴──────────┴───────────┴─────────┴──────────┴────────────────╯
-//                           ╭───────────┬──────────┬───────────────┬─────────────────┬─────────────────╮ ╭───────────────┬────────────────┬──────────┬───────────┬─────────╮
-                               &kp MINUS   &kp LGUI   &mylt NUM ESC   &mt LCTRL SPACE   &mylt NAV ENTER      &mt LSHFT ENTER  &mylt SYM BSPC   &kp LALT   &kp DEL     XXX
-//                           ╰───────────┴──────────┴───────────────┴─────────────────┴─────────────────╯ ╰───────────────┴────────────────┴──────────┴───────────┴─────────╯
+//                     ╭─────────┬─────────┬─────────┬──────────┬──────────╮  ╭──────────┬─────────┬─────────┬─────────┬─────────╮
+//                     │    -    │   Win   │ t: Esc  │ t: Space │ t: Shift │  │ t: Enter │ t: Bscp │   Alt   │   Del   │         │
+//                     │         │         │ h: Win  │ h: NAV   │ h: NUM   │  │ h: Ctrl  │ h: SYM  │         │         │         │
+//                     ╰─────────┴─────────┴─────────┴──────────┴──────────╯  ╰──────────┴─────────┴─────────┴─────────┴─────────╯
+//╭─────────────────┬─────────────┬─────────────┬──────────────┬──────────────┬─────────────────╮                                   ╭────────────────┬──────────────┬──────────────┬─────────────┬───────────────┬────────────────╮
+    &kp EQUAL         &kp N1        &kp N2        &kp N3         &kp N4         &kp N5                                                &kp N6           &kp N7         &kp N8         &kp N9        &kp N0          &kp MINUS
+//├─────────────────┼─────────────┼─────────────┼──────────────┼──────────────┼─────────────────┤                                   ├────────────────┼──────────────┼──────────────┼─────────────┼───────────────┼────────────────┤
+    &kp TAB           &kp Q         &kp W         &kp E          &kp R          &kp T                                                 &kp Y            &kp U          &kp I          &kp O         &kp P           &kp GRAVE
+//├─────────────────┼─────────────┼─────────────┼──────────────┼──────────────┼─────────────────┤                                   ├────────────────┼──────────────┼──────────────┼─────────────┼───────────────┼────────────────┤
+    &mo_lang FUNC 0   &hml LGUI A   &hml LALT S   &hml LSHFT D   &hml LCTRL F   &kp G                                                 &kp H            &hmr LCTRL J   &hmr RSHFT K   &hmr LALT L   &hmr LGUI SEMI  &kp SQT
+//├─────────────────┼─────────────┼─────────────┼──────────────┼──────────────┼─────────────────┤                                   ├────────────────┼──────────────┼──────────────┼─────────────┼───────────────┼────────────────┤
+    &mt LSHIFT LPAR   &kp Z         &kp X         &kp C          &kp V          &kp B             &kp C_PLAY_PAUSE     &kp C_MUTE     &kp N            &kp M          &kp COMMA      &kp DOT       &kp FSLH        &mt LCTRL RPAR
+//╰─────────────────┴─────────────┴─────────────┴──────────────┴──────────────┴─────────────────╯                                   ╰────────────────┴──────────────┴──────────────┴─────────────┴───────────────┴────────────────╯
+//                                ╭─────────────┬──────────────┬──────────────┬─────────────────┬─────────────────╮ ╭───────────────┬────────────────┬──────────────┬──────────────┬─────────────╮
+                                    &kp MINUS     &kp LGUI       &mt LGUI ESC   &mylt NAV SPACE   &mosk NUM LSHFT    &mt LCTRL ENTER  &mylt SYM BSPC   &kp LALT       &kp DEL        XXX
+//                                ╰─────────────┴──────────────┴──────────────┴─────────────────┴─────────────────╯ ╰───────────────┴────────────────┴──────────────┴──────────────┴─────────────╯
     , /* sensor */ &inc_dec_kp LEFT RIGHT &inc_dec_kp C_VOL_DN C_VOL_UP
 )
-
 
 ZMK_LAYER(symbols,
 //╭───────┬───────┬───────┬───────┬───────┬─────────────╮                   ╭───────┬───────┬───────┬───────┬───────┬───────╮
 //│       │       │   @   │   #   │       │             │                   │       │       │       │       │       │       │
 //├───────┼───────┼───────┼───────┼───────┼─────────────┤                   ├───────┼───────┼───────┼───────┼───────┼───────┤
-//│   Ё   │       │   @   │   {   │   }   │     #       │                   │   -   │   ~   │   %   │   Х   │   Ъ   │   ~   │
+//│       │       │   @   │   {   │   }   │     #       │                   │   -   │   ~   │   %   │   Х   │   Ъ   │   ~   │
 //├───────┼───────┼───────┼───────┼───────┼─────────────┤                   ├───────┼───────┼───────┼───────┼───────┼───────┤
 //│       │   !   │   +   │   (   │   )   │     *       │                   │   ^   │   -   │   "   │   $   │   :   │   "   │
 //├───────┼───────┼───────┼───────┼───────┼─────────────┤                   ├───────┼───────┼───────┼───────┼───────┼───────┤
@@ -242,21 +283,19 @@ ZMK_LAYER(symbols,
 //                │   -   │       │Compose│ t: UnbrkSpc │ t: _   │  │       │ HOLD  │       │       │       │
 //                │   -   │       │       │ h: Ctrl     │ h: Alt │  │       │       │       │       │       │
 //                ╰───────┴───────┴───────┴─────────────┴────────╯  ╰───────┴───────┴───────┴───────┴───────╯
-//╭────────┬──────────┬───────────┬────────────┬─────────────┬─────────────────╮                              ╭───────────┬───────────┬─────────────┬────────────┬───────────┬───────────╮
-    XXX      XXX        &kp AT      &kp HASH     XXX           XXX                                              XXX         XXX         XXX           XXX          XXX         XXX
-//├────────┼──────────┼───────────┼────────────┼─────────────┼─────────────────┤                              ├───────────┼───────────┼─────────────┼────────────┼───────────┼───────────┤
-    XXX      XXX        &kp AT      &kp LBRC     &kp RBRC      &kp HASH                                         &kp MINUS   &kp TILDE   &kp PERCENT   XXX          XXX         &kp TILDE
-//├────────┼──────────┼───────────┼────────────┼─────────────┼─────────────────┤                              ├───────────┼───────────┼─────────────┼────────────┼───────────┼───────────┤
-    XXX      &kp EXCL   &kp PLUS    &kp LPAR     &kp RPAR      &kp ASTRK                                        &kp CARET   &kp MINUS   &kp DQT       &kp DOLLAR   &kp COLON   &kp DQT
-//├────────┼──────────┼───────────┼────────────┼─────────────┼─────────────────┤                              ├───────────┼───────────┼─────────────┼────────────┼───────────┼───────────┤
-    ___      &kp BSLH   &kp PIPE    &kp LBKT     &kp RBKT      &kp AMPS            ___                  ___     &kp QMARK   &kp EQUAL   &kp LT        &kp GT       &em_dash    XXX
-//╰────────┴──────────┴───────────┴────────────┴─────────────┴─────────────────╯                              ╰───────────┴───────────┴─────────────┴────────────┴───────────┴───────────╯
-//                    ╭───────────┬────────────┬─────────────┬─────────────────┬──────────────────╮  ╭────────┬───────────┬───────────┬─────────────┬────────────╮
-                        &kp MINUS   ___          &kp RALT      &mt LCTRL UNDER   &nbsp_mod LALT 0       ___     ___         ___         ___           ___
-//                      &kp MINUS   ___          &kp RALT     &nbsp_mod LCTRL 0  &mt LALT UNDER         ___     ___         ___         ___           ___
-//                    ╰───────────┴────────────┴─────────────┴─────────────────┴──────────────────╯  ╰────────┴───────────┴───────────┴─────────────┴────────────╯
+//╭────────┬────────────────┬────────────────┬──────────────────┬─────────────────┬───────────╮                              ╭───────────┬──────────────────┬─────────────────┬──────────────────┬─────────────────┬───────────╮
+    XXX      XXX              &kp AT           &kp HASH           XXX               XXX                                        XXX         XXX                XXX               XXX                XXX               XXX
+//├────────┼────────────────┼────────────────┼──────────────────┼─────────────────┼───────────┤                              ├───────────┼──────────────────┼─────────────────┼──────────────────┼─────────────────┼───────────┤
+    XXX      XXX              &kp AT           &kp LBRC           &kp RBRC          &kp HASH                                   &kp MINUS   &kp TILDE          &kp PERCENT       XXX                XXX               &kp TILDE
+//├────────┼────────────────┼────────────────┼──────────────────┼─────────────────┼───────────┤                              ├───────────┼──────────────────┼─────────────────┼──────────────────┼─────────────────┼───────────┤
+    XXX      &hml LGUI EXCL   &hml LALT PLUS   &hml LSHIFT LPAR   &hml LCTRL RPAR   &kp ASTRK                                  &kp CARET   &hmr LCTRL MINUS   &hmr RSHIFT DQT   &hmr LALT DOLLAR   &hmr LGUI COLON   &kp DQT
+//├────────┼────────────────┼────────────────┼──────────────────┼─────────────────┼───────────┤                              ├───────────┼──────────────────┼─────────────────┼──────────────────┼─────────────────┼───────────┤
+    ___      &kp BSLH         &kp PIPE         &kp LBKT           &kp RBKT          &kp AMPS      ___                  ___     &kp QMARK   &kp EQUAL          &kp LT            &kp GT             &em_dash          XXX
+//╰────────┴────────────────┴────────────────┴──────────────────┴─────────────────┴───────────╯                              ╰───────────┴──────────────────┴─────────────────┴──────────────────┴─────────────────┴───────────╯
+//                          ╭────────────────┬──────────────────┬─────────────────┬───────────┬──────────────────╮  ╭────────┬───────────┬──────────────────┬─────────────────┬──────────────────╮
+                              &kp MINUS        ___                &kp RALT          &kp UNDER   &nbsp_mod LALT 0       ___     ___         ___                ___               ___
+//                          ╰────────────────┴──────────────────┴─────────────────┴───────────┴──────────────────╯  ╰────────┴───────────┴──────────────────┴─────────────────┴──────────────────╯
 )
-
 
 ZMK_LAYER(nav,
 //╭─────────┬───────┬───────┬───────┬───────┬───────╮                  ╭───────┬──────────┬──────────┬────────────┬───────────┬───────╮
@@ -284,7 +323,6 @@ ZMK_LAYER(nav,
                             ___        ___         &to QWERTY      ___             ___      &kp ENTER   ___         &kp DEL      &kp LC(Q)    ___
 //                        ╰──────────┴───────────┴───────────────┴───────────────┴─────╯  ╰───────────┴───────────┴────────────┴────────────┴─────────────╯
 )
-
 
 ZMK_LAYER(num,
 //╭─────────┬───────┬───────┬───────┬───────┬───────╮                ╭─────┬─────┬─────┬─────┬─────┬─────╮
