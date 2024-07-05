@@ -114,6 +114,11 @@ ZMK_MACRO(select_word,
 // Delete word, with cursor somewhere in between
 ZMK_MACRO(delete_word, bindings = <&select_word &kp BACKSPACE>;)
 
+&sk {  // sticky-key config
+    release-after-ms = <900>;  // release after 0.6s
+    quick-release;             // no double capitalization when rolling keys
+};
+
 // tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
 ZMK_HOLD_TAP(mt_spc,
     flavor = "balanced";
