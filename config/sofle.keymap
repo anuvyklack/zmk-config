@@ -280,7 +280,7 @@ ZMK_LAYER(qwerty,
 //                                ╭─────────────┬──────────┬──────────────┬─────────────────┬─────────────────╮ ╭─────────────┬────────────────┬────────────────┬───────────┬─────────╮
                                     &mo NUM       &kp LGUI   &mt LALT ESC   &mt LCTRL SPACE   &mylt NAV ENTER     &smart_shft   &mylt SYM BSPC   &mt LALT ENTER   &kp DEL     XXX
 //                                ╰─────────────┴──────────┴──────────────┴─────────────────┴─────────────────╯ ╰─────────────┴────────────────┴────────────────┴───────────┴─────────╯
-    , /* sensor */ &inc_dec_kp LEFT RIGHT &inc_dec_kp C_VOL_DN C_VOL_UP
+    , /* sensor */ &inc_dec_kp LEFT RIGHT &inc_dec_kp C_VOLUME_DOWN C_VOLUME_UP
 )
 
 ZMK_LAYER(symbols,
