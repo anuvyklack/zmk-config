@@ -275,7 +275,8 @@ ZMK_LAYER(qwerty,
 //├───────────┼─────────────┼─────────────┼───────────────┼──────────────┼─────────────────┤                                 ├────────────────┼────────────────┼───────────────────┼───────────────┼────────────────┼───────────┤
     &kp ENTER   &kp A         &kp S         &kp D           &lnav NUM F    &kp G                                               &kp H            &kp J            &kp K               &kp L           &kp SEMI         &kp SQT
 //├───────────┼─────────────┼─────────────┼───────────────┼──────────────┼─────────────────┤                                 ├────────────────┼────────────────┼───────────────────┼───────────────┼────────────────┼───────────┤
-    &mo FUNC    &hml LGUI Z   &hml LATL X   &hml LSHIFT C   &hml LCTRL V   &kp B             &kp C_PLAY_PAUSE    &kp C_MUTE    &kp N            &hmr LCTRL M     &hmr LSHIFT COMMA   &hmr LALT DOT   &hmr LGUI FSLH   &lang
+//  &mo FUNC    &hml LGUI Z   &hml LALT X   &hml LSHIFT C   &hml LCTRL V   &kp B             &kp C_PLAY_PAUSE    &kp C_MUTE    &kp N            &kp M            &kp COMMA           &kp DOT         &kp FSLH         &lang
+    &mo FUNC    &hml LGUI Z   &hml LALT X   &hml LSHIFT C   &hml LCTRL V   &kp B             &kp C_PLAY_PAUSE    &kp C_MUTE    &kp N            &hmr LCTRL M     &hmr LSHIFT COMMA   &hmr LALT DOT   &hmr LGUI FSLH   &lang
 //╰───────────┴─────────────┴─────────────┴───────────────┴──────────────┴─────────────────╯                                 ╰────────────────┴────────────────┴───────────────────┴───────────────┴────────────────┴───────────╯
 //                          ╭─────────────┬───────────────┬──────────────┬─────────────────┬─────────────────╮ ╭─────────────┬────────────────┬────────────────┬───────────────────┬───────────────╮
                               &mo NUM       &kp LGUI        &mt LALT ESC   &mt LCTRL SPACE   &mylt NAV ENTER     &smart_shft   &mylt SYM BSPC   &mt LALT ENTER   &kp DEL             XXX
